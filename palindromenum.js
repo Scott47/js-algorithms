@@ -24,7 +24,7 @@ const max3DigitPalindromeProduct = () => {
         factorRange2.forEach(factor2 => productsArray.push(factor1 * factor2))
     })
     const productsAsStrings = productsArray.map(String)
-    const arrayofStringsSplit = productsAsStrings.map(numStr => {
+    const arrayOfPalindromes = productsAsStrings.map(numStr => {
         const palindromeCheck = palindrome(numStr)
         if (palindromeCheck) {
             return +numStr
@@ -32,7 +32,7 @@ const max3DigitPalindromeProduct = () => {
             arrayBoolDump.push(numStr)
         }
     })
-    const numbersOnly = arrayofStringsSplit.filter(num => num !== undefined)
+    const numbersOnly = arrayOfPalindromes.filter(num => num !== undefined)
     console.log(Math.max(...numbersOnly))
 }
 
