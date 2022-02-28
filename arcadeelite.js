@@ -69,13 +69,13 @@ const arcadePlayerRanking = (currentPlayerScoresArr, leaderScoresArr) => {
     let map = new Map()
     let rank = 1
     for (const score of topScores) {
-            map.set(score, rank++)
-        }
+        map.set(score, rank++)
+    }
     return map
 }
-
 
 const leaders = [ 490, 450, 400, 320, 320, 290 ]
 const currentPlayer = [ 50, 310, 480, 200, 350, 180 ]
 
-console.log(arcadePlayerRanking(currentPlayer, leaders))
+const playerRanks = arcadePlayerRanking(currentPlayer, leaders)
+console.log(playerRanks)
