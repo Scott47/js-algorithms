@@ -65,17 +65,26 @@
 const arcadePlayerRanking = (currentPlayerScoresArr, leaderScoresArr) => {
     const CPScoresOnLeaderBoard = currentPlayerScoresArr.filter(cpscr => cpscr >= Math.min(...leaderScoresArr)) 
     const topScores = leaderScoresArr.concat(CPScoresOnLeaderBoard).sort((a, b) => b-a)
-  
+    let ranks = []
     let map = new Map()
     let rank = 1
+    ranks.push(rank)
     for (const score of topScores) {
-        map.set(score, rank++)
+        if(!map.has(score)) {
+            map.set(score, rank++)
+            ranks.push(rank)
+        }
+    else if(map.has(score)) {
+        map.get(score, rank--)
+        ranks.push(rank)
+        rank++
     }
+} 
+    console.log(ranks.sort())
     return map
 }
 
 const leaders = [ 490, 450, 400, 320, 320, 290 ]
 const currentPlayer = [ 50, 310, 480, 200, 350, 180 ]
-
 const playerRanks = arcadePlayerRanking(currentPlayer, leaders)
 console.log(playerRanks)
