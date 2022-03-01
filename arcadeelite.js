@@ -58,33 +58,31 @@
 // * 350 would be the 4th ranked score, so a rank was added to the return array.
 // * 180 was not in the range of leaderboard scores, so rank was not added to return array.
 
-// Use code below to put rails on score range
-// const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
-// const scoresInRange = range(10, 500, 1)
 
 const arcadePlayerRanking = (currentPlayerScoresArr, leaderScoresArr) => {
-    const CPScoresOnLeaderBoard = currentPlayerScoresArr.filter(cpscr => cpscr >= Math.min(...leaderScoresArr)) 
-    const topScores = leaderScoresArr.concat(CPScoresOnLeaderBoard).sort((a, b) => b-a)
-    let ranks = []
-    let map = new Map()
+    const CPScoresOnLeaderBoard = currentPlayerScoresArr.filter(cpscr => cpscr >= Math.min(...leaderScoresArr))
+    const topScores = leaderScoresArr.concat(CPScoresOnLeaderBoard).sort((a, b) => b - a)
+    let rankList = []
+    let scoresWithRank = new Map()
     let rank = 1
-    ranks.push(rank)
+
+    rankList.push(rank)
     for (const score of topScores) {
-        if(!map.has(score)) {
-            map.set(score, rank++)
-            ranks.push(rank)
+        if (!scoresWithRank.has(score)) {
+            scoresWithRank.set(score, rank++)
+            rankList.push(rank)
         }
-    else if(map.has(score)) {
-        map.get(score, rank--)
-        ranks.push(rank)
-        rank++
+        else if (scoresWithRank.has(score)) {
+            scoresWithRank.get(score, rank--)
+            rankList.push(rank)
+            rank++
+        }
     }
-} 
-    console.log(ranks.sort())
-    return map
+    console.log(rankList.sort())
+    return scoresWithRank
 }
 
-const leaders = [ 490, 450, 400, 320, 320, 290 ]
-const currentPlayer = [ 50, 310, 480, 200, 350, 180 ]
-const playerRanks = arcadePlayerRanking(currentPlayer, leaders)
+const leaders = [490, 450, 400, 320, 320, 290]
+const currentPlayer = [50, 310, 480, 200, 350, 180]
+const updatedboard = arcadePlayerRanking(currentPlayer, leaders)
 console.log(playerRanks)
