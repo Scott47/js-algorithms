@@ -85,4 +85,4 @@ const arcadePlayerRanking = (currentPlayerScoresArr, leaderScoresArr) => {
 const leaders = [490, 450, 400, 320, 320, 290]
 const currentPlayer = [50, 310, 480, 200, 350, 180]
 const updatedboard = arcadePlayerRanking(currentPlayer, leaders)
-console.log(playerRanks)
+console.log(updatedboard)
