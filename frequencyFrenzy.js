@@ -92,5 +92,5 @@ const frequencyChanges = [ 12, -10, -4, -8, 18, -1, -13,
     16, 12, 14, 11, 11, 2, 1, 19, -10, 18, -17, -9, -11, -8,
     10, -1, -110292 ]
 
-    const frequencyResult = frequencyChanges.reduce((current, prev)=> {return current + prev}, 0)
+    const frequencyResult = frequencyChanges.reduce((previous, current) => previous + current, 0)
     console.log(frequencyResult)
